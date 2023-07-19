@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import sourceData from '@/data.json'
+import sourceData from '@/data'
 import type { Id, Post } from '@/data/types'
 
 defineProps<{ posts: Post[] }>()
@@ -15,10 +15,10 @@ const getUserById = (userId: Id) => users.value.find((u) => u.id === userId)
   <div class="post-list">
     <div class="post" v-for="post in posts" :key="post.id">
       <div class="user-info">
-        <a href="#" class="user-name">{{ getUserById(post.userId).name }}</a>
+        <a href="#" class="user-name">{{ getUserById(post.userId)?.name }}</a>
 
         <a href="#">
-          <img class="avatar-large" :src="getUserById(post.userId).avatar" alt="" />
+          <img class="avatar-large" :src="getUserById(post.userId)?.avatar" alt="" />
         </a>
 
         <p class="desktop-only text-small">X posts</p>

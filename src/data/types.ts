@@ -3,6 +3,16 @@ export type Markdown = string
 export type Timestamp = number
 export type Url = string
 
+export type Forum = {
+  categoryId: Id
+  description: string
+  lastPostId: Id
+  name: string
+  slug: string
+  threads: Id[]
+  id: Id
+}
+
 export type Post = {
   edited?: {
     at: Timestamp

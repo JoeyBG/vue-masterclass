@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import sourceData from '@/data.json'
 import { ref } from 'vue'
+
+import sourceData from '@/data'
 
 const threads = ref(sourceData.threads)
 </script>

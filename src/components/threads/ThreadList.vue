@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import sourceData from '@/data.json'
-import { type Id, type Thread, type User } from '@/data/types'
+import sourceData from '@/data'
+import { type Id, type Thread } from '@/data/types'
 
 defineProps<{ threads: Thread[] }>()
 
-const users = ref(sourceData.users as User[])
+const users = ref(sourceData.users)
 
 const getUserById = (userId: Id) => users.value.find((u) => u.id === userId)
 </script>
@@ -24,7 +24,7 @@ const getUserById = (userId: Id) => users.value.find((u) => u.id === userId)
             }}</RouterLink>
           </p>
           <p class="text-faded text-xsmall">
-            By <a href="profile.html">{{ getUserById(thread.userId).name }}</a
+            By <a href="profile.html">{{ getUserById(thread.userId)?.name }}</a
             >, <DateLabel :timestamp="thread.publishedAt" />.
           </p>
         </div>
@@ -32,11 +32,11 @@ const getUserById = (userId: Id) => users.value.find((u) => u.id === userId)
         <div class="activity">
           <p class="replies-count">{{ thread.posts.length }} replies</p>
 
-          <img class="avatar-medium" :src="getUserById(thread.userId).avatar" alt="" />
+          <img class="avatar-medium" :src="getUserById(thread.userId)?.avatar" alt="" />
 
           <div>
             <p class="text-xsmall">
-              <a href="#">{{ getUserById(thread.userId).name }}</a>
+              <a href="#">{{ getUserById(thread.userId)?.name }}</a>
             </p>
             <p class="text-xsmall text-faded">
               <DateLabel :timestamp="thread.publishedAt" />

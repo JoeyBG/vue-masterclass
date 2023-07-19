@@ -6,7 +6,7 @@ import {
 } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
-import sourceData from '@/data.json'
+import sourceData from '../data'
 
 const redirectToNotFound = (to: RouteLocationNormalized) => ({
   name: 'not-found',
@@ -20,6 +20,12 @@ const routes: RouteRecordRaw[] = [
     name: 'home',
     path: '/',
     component: HomeView
+  },
+  {
+    name: 'forum',
+    path: '/forum/:forumId',
+    component: () => import('../views/ForumView.vue'),
+    props: true
   },
   {
     name: 'thread-show',
