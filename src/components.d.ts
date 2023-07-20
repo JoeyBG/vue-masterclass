@@ -7,7 +7,10 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    CategoryList: typeof import('./components/categories/CategoryList.vue')['default']
+    CategoryListItem: typeof import('./components/categories/CategoryListItem.vue')['default']
     DateLabel: typeof import('./components/uikit/DateLabel.vue')['default']
+    ForumList: typeof import('./components/forums/ForumList.vue')['default']
     PostEditor: typeof import('./components/posts/PostEditor.vue')['default']
     PostList: typeof import('./components/posts/PostList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

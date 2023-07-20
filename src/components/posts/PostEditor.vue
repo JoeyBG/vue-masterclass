@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import type { Post, Thread } from '@/data/types'
+import type { Optional, Post, Thread } from '@/data/types'
 
 const emits = defineEmits<{
-  (e: 'postSaved', post: Post): void
+  (e: 'postSaved', post: Optional<Post, 'id'>): void
 }>()
 
 const props = defineProps<{ thread: Thread }>()
@@ -13,7 +13,6 @@ const postText = ref('')
 
 const savePost = () => {
   emits('postSaved', {
-    id: 'post_' + Math.random(),
     text: postText.value,
     publishedAt: Math.floor(Date.now() / 1000),
     threadId: props.thread.id,

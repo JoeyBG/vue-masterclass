@@ -1,7 +1,16 @@
+export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>
+
 export type Id = string
 export type Markdown = string
 export type Timestamp = number
 export type Url = string
+
+export type Category = {
+  forums: Id[]
+  name: string
+  slug: string
+  id: Id
+}
 
 export type Forum = {
   categoryId: Id
@@ -9,7 +18,7 @@ export type Forum = {
   lastPostId: Id
   name: string
   slug: string
-  threads: Id[]
+  threads?: Id[]
   id: Id
 }
 

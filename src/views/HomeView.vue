@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
 
-import sourceData from '@/data'
+import { useCategoriesStore } from '@/stores/categories'
 
-const threads = ref(sourceData.threads)
+const { categories } = storeToRefs(useCategoriesStore())
 </script>
 
 <template>
-  <h1>Welcome to the forum</h1>
-  <ThreadList :threads="threads" />
+  <div class="col-full">
+    <h1>Welcome to the forum</h1>
+    <CategoryList :categories="categories" />
+  </div>
 </template>

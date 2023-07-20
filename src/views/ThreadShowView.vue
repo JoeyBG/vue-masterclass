@@ -1,23 +1,21 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
+import { storeToRefs } from 'pinia'
 
-import sourceData from '@/data'
-import type { Id, Post } from '@/data/types'
+import type { Id } from '@/data/types'
+import { usePostsStore } from '@/stores/posts'
+import { useThreadsStore } from '@/stores/threads'
 
 import PostEditor from '@/components/posts/PostEditor.vue'
 import PostList from '@/components/posts/PostList.vue'
 
 const props = defineProps<{ threadId: Id }>()
 
-const posts = ref(sourceData.posts)
+const { threads } = storeToRefs(useThreadsStore())
+const postsStore = usePostsStore()
 
-const thread = computed(() => sourceData.threads.find((t) => t.id === props.threadId))
-const threadPosts = computed(() => posts.value.filter((p) => p.threadId === props.threadId))
-
-const addPost = (post: Post) => {
-  posts.value.push(post)
-  thread.value?.posts.push(post.id)
-}
+const thread = computed(() => threads.value.find((t) => t.id === props.threadId))
+const threadPosts = computed(() => postsStore.posts.filter((p) => p.threadId === props.threadId))
 </script>
 
 <template>
@@ -26,6 +24,6 @@ const addPost = (post: Post) => {
 
     <PostList :posts="threadPosts" />
 
-    <PostEditor :thread="thread" @postSaved="addPost" />
+    <PostEditor :thread="thread" @postSaved="postsStore.addPost" />
   </div>
 </template>

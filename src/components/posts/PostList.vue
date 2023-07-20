@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
 
-import sourceData from '@/data'
 import type { Id, Post } from '@/data/types'
+import { useUsersStore } from '@/stores/users'
 
 defineProps<{ posts: Post[] }>()
 
-const users = ref(sourceData.users)
+const { users } = storeToRefs(useUsersStore())
 
 const getUserById = (userId: Id) => users.value.find((u) => u.id === userId)
 </script>

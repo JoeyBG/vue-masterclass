@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { storeToRefs } from 'pinia'
 
-import sourceData from '@/data'
 import type { Id } from '@/data/types'
+import { useForumsStore } from '@/stores/forums'
+import { useThreadsStore } from '@/stores/threads'
 
 const props = defineProps<{ forumId: Id }>()
 
-const forum = computed(() => sourceData.forums.find((f) => f.id === props.forumId))
-const threads = computed(() => sourceData.threads.filter((t) => t.forumId === props.forumId))
+const { forums } = storeToRefs(useForumsStore())
+const { threads } = storeToRefs(useThreadsStore())
+
+const forum = computed(() => forums.value.find((f) => f.id === props.forumId))
+const forumThreads = computed(() => threads.value.filter((t) => t.forumId === props.forumId))
 </script>
 
 <template>
@@ -22,7 +27,7 @@ const threads = computed(() => sourceData.threads.filter((t) => t.forumId === pr
   </div>
 
   <div class="col-full push-top">
-    <ThreadList :threads="threads" />
+    <ThreadList :threads="forumThreads" />
   </div>
 </template>
 
