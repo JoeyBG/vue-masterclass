@@ -51,6 +51,7 @@ export type Thread = {
 
 export type User = {
   avatar: Url
+  bio?: string
   email: string
   lastVisitAt: Timestamp
   name: string
@@ -58,5 +59,6 @@ export type User = {
   registeredAt: Timestamp
   username: string
   usernameLower: string
+  website?: string
   id: Id
 }

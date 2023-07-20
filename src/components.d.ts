@@ -11,10 +11,12 @@ declare module 'vue' {
     CategoryListItem: typeof import('./components/categories/CategoryListItem.vue')['default']
     DateLabel: typeof import('./components/uikit/DateLabel.vue')['default']
     ForumList: typeof import('./components/forums/ForumList.vue')['default']
+    PluralizeLabel: typeof import('./components/uikit/PluralizeLabel.vue')['default']
     PostEditor: typeof import('./components/posts/PostEditor.vue')['default']
     PostList: typeof import('./components/posts/PostList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TheNavBar: typeof import('./components/TheNavBar.vue')['default']
     ThreadList: typeof import('./components/threads/ThreadList.vue')['default']
   }
 }

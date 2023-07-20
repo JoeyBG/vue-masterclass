@@ -22,6 +22,11 @@ const routes: RouteRecordRaw[] = [
     component: HomeView
   },
   {
+    name: 'profile',
+    path: '/profile',
+    component: () => import('../views/ProfileView.vue')
+  },
+  {
     name: 'category',
     path: '/category/:categoryId',
     component: () => import('../views/CategoryView.vue'),
